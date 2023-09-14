@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Inputs</title>
+</head>
+<body>
+    <div>
+        <label for="selectOption">Select an option:</label>
+        <select id="selectOption">
+            <option value="1">Option 1</option>
+            <option value="2">Option 2</option>
+            <option value="3">Option 3</option>
+        </select>
+    </div>
+
+    <div class="input-container" id="inputContainer">
+        <!-- Input elements will be added here -->
+    </div>
+
+    <script>
+        const selectElement = document.getElementById('selectOption');
+        const inputContainer = document.getElementById('inputContainer');
+
+        // Listen for changes in the selected option
+        selectElement.addEventListener('click', function () {
+            const selectedOption = parseInt(selectElement.value);
+            renderInputElements(selectedOption);
+        });
+
+        // Function to render input elements based on the selected option
+        function renderInputElements(selectedOption) {
+            inputContainer.innerHTML = ''; // Clear previous inputs
+
+            for (let i = 1; i <= selectedOption; i++) {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = `Input ${i}`;
+                inputContainer.appendChild(input);
+            }
+        }
+
+        // Initialize with default option
+        //renderInputElements(1);
+    </script>
+</body>
+</html>
